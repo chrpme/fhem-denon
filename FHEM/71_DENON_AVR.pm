@@ -632,7 +632,14 @@ DENON_AVR_Command_SetVolume($$)
 	{
 		if ($volume % 10 == 0)
 		{
-			DENON_AVR_SimpleWrite($hash, "MV".($volume / 10));
+			if ($volume < 100)
+			{
+				DENON_AVR_SimpleWrite($hash, "MV0".($volume / 10));
+			}
+			else
+			{
+				DENON_AVR_SimpleWrite($hash, "MV".($volume / 10));
+			}
 		}
 		else
 		{
